@@ -294,8 +294,16 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             pt = CGPointApplyAffineTransform(pt, valueToPixelMatrix)
             
             pt.x = fixedPosition
-            pt.y += offset
-            
+            // pt.y += offset
+            // customise the first and last label when labelPosition is specified InsideChart
+            if i == 0 {
+              pt.y += (offset-5)
+            }
+          
+            if i == (yAxis.entryCount-1) {
+              pt.y += (offset+7)
+            }
+          
             ChartUtils.drawText(context: context, text: text, point: pt, align: textAlign, attributes: [NSFontAttributeName: labelFont, NSForegroundColorAttributeName: labelTextColor])
         }
     }
